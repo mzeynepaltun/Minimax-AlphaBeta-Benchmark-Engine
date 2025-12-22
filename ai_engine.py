@@ -4,17 +4,14 @@ class GameAI:
     def __init__(self, game):
         self.game = game
         self.nodes_visited = 0
-        self.total_possible_nodes = 0
 
     def _order_moves(self, moves):
         center = self.game.size / 2
         return sorted(moves, key=lambda m: (abs(m[0]-center) + abs(m[1]-center)))
 
     def alpha_beta(self, depth, alpha, beta, is_maximizing, start_time, time_limit):
-        if time.perf_counter() - start_time > time_limit:
-            return None, None
+        if time.perf_counter() - start_time > time_limit: return None, None
         self.nodes_visited += 1
-        
         if self.game.check_winner(2): return 100 + depth, None
         if self.game.check_winner(1): return -100 - depth, None
         valid_moves = self.game.get_valid_moves()
@@ -46,10 +43,8 @@ class GameAI:
             return min_eval, best_move
 
     def minimax_only_nodes(self, depth, is_maximizing):
-        """Sadece karşılaştırma amaçlı düğüm sayar."""
         self.nodes_visited += 1
-        if self.game.check_winner(2) or self.game.check_winner(1) or depth == 0:
-            return
+        if self.game.check_winner(2) or self.game.check_winner(1) or depth == 0: return
         valid_moves = self.game.get_valid_moves()
         for move in valid_moves:
             self.game.board[move[0]][move[1]] = (2 if is_maximizing else 1)
@@ -57,21 +52,16 @@ class GameAI:
             self.game.board[move[0]][move[1]] = 0
 
     def get_comparison_data(self, time_limit=0.8):
-        # 1. Alpha-Beta ile en iyi hamleyi bul (Iterative Deepening)
         start_time = time.perf_counter()
         last_move, d = None, 1
         ab_nodes = 0
-        while d < 12:
+        while d < 10:
             self.nodes_visited = 0
             res, move = self.alpha_beta(d, float('-inf'), float('inf'), True, start_time, time_limit)
             if move is None: break
             last_move, ab_nodes, d = move, self.nodes_visited, d + 1
             if res > 90 or res < -90: break
-        
         final_depth = d - 1
-        # 2. Aynı derinlikte Minimax ne kadar düğüm gezerdi?
         self.nodes_visited = 0
         self.minimax_only_nodes(final_depth, True)
-        mm_nodes = self.nodes_visited
-        
-        return last_move, time.perf_counter()-start_time, ab_nodes, mm_nodes, final_depth
+        return last_move, time.perf_counter()-start_time, ab_nodes, self.nodes_visited, final_depth

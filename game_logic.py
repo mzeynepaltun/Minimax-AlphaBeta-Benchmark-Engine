@@ -2,16 +2,16 @@ import numpy as np
 
 class TicTacToe:
     def __init__(self, size=3):
-        self.size = size
-        self.board = np.zeros((size, size), dtype=int)
+        self.size = 3 
+        self.board = np.zeros((3, 3), dtype=int)
         self.current_player = 1
         
     def reset(self):
-        self.board = np.zeros((self.size, self.size), dtype=int)
+        self.board = np.zeros((3, 3), dtype=int)
         self.current_player = 1
         
     def get_valid_moves(self):
-        return [(r, c) for r in range(self.size) for c in range(self.size) if self.board[r][c] == 0]
+        return [(r, c) for r in range(3) for c in range(3) if self.board[r][c] == 0]
     
     def make_move(self, move):
         row, col = move
@@ -24,19 +24,12 @@ class TicTacToe:
         return self.get_winner_coords(player) is not None
 
     def get_winner_coords(self, player):
-        # Satırlar
-        for r in range(self.size):
-            if all(self.board[r, :] == player):
-                return [(r, c) for c in range(self.size)]
-        # Sütunlar
-        for c in range(self.size):
-            if all(self.board[:, c] == player):
-                return [(r, c) for r in range(self.size)]
-        # Çaprazlar
-        if all(np.diag(self.board) == player):
-            return [(i, i) for i in range(self.size)]
-        if all(np.diag(np.fliplr(self.board)) == player):
-            return [(i, self.size - 1 - i) for i in range(self.size)]
+        for r in range(3):
+            if all(self.board[r, :] == player): return [(r, c) for c in range(3)]
+        for c in range(3):
+            if all(self.board[:, c] == player): return [(r, c) for r in range(3)]
+        if all(np.diag(self.board) == player): return [(i, i) for i in range(3)]
+        if all(np.diag(np.fliplr(self.board)) == player): return [(i, 3 - 1 - i) for i in range(3)]
         return None
 
     def is_terminal(self):
@@ -48,7 +41,7 @@ class TicTacToe:
         
         score = 0
         lines = []
-        for i in range(self.size):
+        for i in range(3):
             lines.append(list(self.board[i, :]))
             lines.append(list(self.board[:, i]))
         lines.append(list(np.diag(self.board)))
@@ -56,9 +49,8 @@ class TicTacToe:
 
         for line in lines:
             ai_c, hum_c, empty_c = line.count(2), line.count(1), line.count(0)
-            if hum_c == (self.size - 1) and empty_c == 1: score -= 50 # Savunma
-            if ai_c == (self.size - 1) and empty_c == 1: score += 20    # Saldırı
-
-        center = self.size // 2
-        if self.board[center, center] == 2: score += 5
+            if hum_c == 2 and empty_c == 1: score -= 50 
+            if ai_c == 2 and empty_c == 1: score += 20    
+        
+        # Merkez kontrolü kaldırıldı.
         return score
