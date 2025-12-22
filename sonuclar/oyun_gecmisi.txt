@@ -1,0 +1,10 @@
+[2025-12-22 13:07:42] AI KAZANDI | Boyut: 3x3 | Zorluk: ORTA | Son Hamle Düğümleri -> AB: 10 vs MM: 14
+[2025-12-22 13:22:11] AI KAZANDI | Boyut: 3x3 | Zorluk: ZOR | Son Hamle Düğümleri -> AB: 22 vs MM: 24
+[2025-12-22 13:22:36] BERABERE | Boyut: 3x3 | Zorluk: ZOR | Son Hamle Düğümleri -> AB: 5 vs MM: 5
+[2025-12-22 13:33:09] KAZANDIN! | Boyut: 3x3 | Zorluk: ORTA | Son Hamle Düğümleri -> AB: 5 vs MM: 5
+[2025-12-22 13:33:21] KAZANDIN! | Boyut: 4x4 | Zorluk: ORTA | Son Hamle Düğümleri -> AB: 26 vs MM: 82
+[2025-12-22 13:36:55] KAZANDIN! | Boyut: 3x3 | Zorluk: ORTA | Son Hamle Düğümleri -> AB: 5 vs MM: 5
+[2025-12-22 13:37:01] KAZANDIN! | Boyut: 3x3 | Zorluk: ORTA | Son Hamle Düğümleri -> AB: 5 vs MM: 5
+[2025-12-22 13:37:55] BERABERE | Boyut: 3x3 | Zorluk: ORTA | Son Hamle Düğümleri -> AB: 5 vs MM: 5
+[2025-12-22 13:38:02] BERABERE | Boyut: 3x3 | Zorluk: ORTA | Son Hamle Düğümleri -> AB: 5 vs MM: 5
+[2025-12-22 13:39:02] KAZANDIN! | Boyut: 5x5 | Zorluk: KOLAY | Son Hamle Düğümleri -> AB: 19 vs MM: 19
