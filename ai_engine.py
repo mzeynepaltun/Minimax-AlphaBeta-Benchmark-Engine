@@ -61,21 +61,20 @@ class GameAI:
                 # BUDAMA İŞLEMİ
                 
             return max_eval, best_move
-            
-        """ MIN (İnsan)"""   
+    
         else: # İnsan oyuncunun hamlesi simüle edilir, en düşük puan aranır.
-            min_eval = float('inf')
-            for move in ordered_moves:
-                self.game.board[move[0]][move[1]] = 1
-                eval_score, _ = self.alpha_beta(depth - 1, alpha, beta, True, start_time, time_limit)
-                self.game.board[move[0]][move[1]] = 0
-                
-                if eval_score is None: return None, None
-                if eval_score < min_eval: min_eval, best_move = eval_score, move
-                
-                beta = min(beta, eval_score)
-                if beta <= alpha: break # BUDAMA İŞLEMİ
-            return min_eval, best_move
+                min_eval = float('inf')
+                for move in ordered_moves:
+                    self.game.board[move[0]][move[1]] = 1
+                    eval_score, _ = self.alpha_beta(depth - 1, alpha, beta, True, start_time, time_limit)
+                    self.game.board[move[0]][move[1]] = 0
+                    
+                    if eval_score is None: return None, None
+                    if eval_score < min_eval: min_eval, best_move = eval_score, move
+                    
+                    beta = min(beta, eval_score)
+                    if beta <= alpha: break # BUDAMA İŞLEMİ
+                return min_eval, best_move
 
     def minimax_only_nodes(self, depth, is_maximizing):
         """

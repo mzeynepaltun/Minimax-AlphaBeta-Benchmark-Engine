@@ -122,7 +122,7 @@ class GameGUI:
                     msg = "TEBRİKLER!" if self.game.check_winner(1) else "AI KAZANDI!" if self.game.check_winner(2) else "BERABERE!"
                     txt = self.result_font.render(msg, True, WHITE)
                     self.screen.blit(txt, txt.get_rect(center=(BOARD_SIZE//2, BOARD_SIZE//2-50)))
-                    if self.draw_button("GRAFİK ANALİZİ (6 DERİNLİK)", BOARD_SIZE//2-150, BOARD_SIZE//2+40, 300, 50, SELECTED):
+                    if self.draw_button("GRAFİK ANALİZİ", BOARD_SIZE//2-150, BOARD_SIZE//2+40, 300, 50, SELECTED):
                         run_analysis_graph(3, 6)
                         self.state = "MENU"
                     if self.draw_button("ANA MENÜ", BOARD_SIZE//2-150, BOARD_SIZE//2+105, 300, 50, WHITE): self.state = "MENU"
